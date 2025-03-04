@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -22,24 +22,14 @@ const theme = {
   },
 };
 
-
-
-const App = () => {
-  return (
-    <View>
-      <Stack>
-        <Stack.Screen name="index" options={{ title: "Welcome", headerShown: false }} />
-        <Stack.Screen name="home" options={{ title: "Home", headerShown: false }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </View>
-  )
-}
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+
+
 
   useEffect(() => {
     if (loaded) {
@@ -54,8 +44,7 @@ export default function RootLayout() {
   return (
     <PaperProvider theme={theme}>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "Welcome", headerShown: false }} />
-        <Stack.Screen name="home" options={{ title: "Home", headerShown: false }} />
+        <Slot />
       </Stack>
       <StatusBar style="auto" />
     </PaperProvider>
